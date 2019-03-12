@@ -327,6 +327,8 @@ substr(input_3,input_num,5,3);
 	}
 	
 	printf("%s",op_mon);
+	printf("\n);
+	       printf("中獎金額:%d\n",rlst);
 	
 	
 	return 0;

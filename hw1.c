@@ -326,7 +326,7 @@ substr(input_3,input_num,5,3);
 	no_use=0;
 	}
 	
-	
+	printf("%s",op_mon);
 	
 	
 	return 0;

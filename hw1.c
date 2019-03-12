@@ -163,12 +163,89 @@ int main()
 	printf("\nh. 增開六獎的 第三組號碼\n");
 	printf("%s",six3);
 
-
+int rlst =0;
 printf("\n請輸入待測發票:\n");
 	char *input_num=malloc(LEN+1);
 	strcpy(input_num," "); 
 scanf("%s",input_num);
-
+	
+	char *p12=malloc(LEN+1);
+	char *p13=malloc(LEN+1);
+	char *p14=malloc(LEN+1);
+	char *p15=malloc(LEN+1);
+	char *p16=malloc(LEN+1);
+	
+	char *p22=malloc(LEN+1);
+	char *p23=malloc(LEN+1);
+	char *p24=malloc(LEN+1);
+	char *p25=malloc(LEN+1);
+	char *p26=malloc(LEN+1);
+	
+	char *p32=malloc(LEN+1);
+	char *p33=malloc(LEN+1);
+	char *p34=malloc(LEN+1);
+	char *p35=malloc(LEN+1);
+	char *p36=malloc(LEN+1);
+	
+	char *i2=malloc(LEN+1);
+	char *i3=malloc(LEN+1);
+	char *i4=malloc(LEN+1);
+	char *i5=malloc(LEN+1);
+	char *i6=malloc(LEN+1);
+	
+	char *input_3=malloc(LEN+1);
+substr(input_3,input_num,5,3);
+	substr(p12,hd1,1,7);
+	substr(p13,hd1,2,6);
+	substr(p14,hd1,3,5);
+	substr(p15,hd1,4,4);
+	substr(p16,hd1,5,3);
+	
+	substr(p22,hd2,1,7);
+	substr(p23,hd2,2,6);
+	substr(p24,hd2,3,5);
+	substr(p25,hd2,4,4);
+	substr(p26,hd2,5,3);
+	
+	substr(p32,hd3,1,7);
+	substr(p33,hd3,2,6);
+	substr(p34,hd3,3,5);
+	substr(p35,hd3,4,4);
+	substr(p36,hd3,5,3);
+	
+	substr(i2,input_num,1,7);
+	substr(i3,input_num,2,6);
+	substr(i4,input_num,3,5);
+	substr(i5,input_num,4,4);
+	substr(i6,input_num,5,3);
+	
+	
+	if(strcmp(ssp,input_num)==0){rlst =10000000;}else if(
+	strcmp(sp,input_num)==0){rlst =2000000;}else if(
+	strcmp(hd1,input_num)==0){rlst =200000;}else if(
+	strcmp(hd2,input_num)==0){rlst =200000;}else if(
+	strcmp(hd3,input_num)==0){rlst =200000;}else if(
+	strcmp(six1,input_3)==0){rlst =-200;}else if(
+	strcmp(six2,input_3)==0){rlst =-200;}else if(
+	strcmp(six3,input_3)==0){rlst =-200;}else if(
+	
+	strcmp(p12,i2)==0){rlst =40000;}else if(
+	strcmp(p13,i3)==0){rlst =10000;}else if(
+	strcmp(p14,i4)==0){rlst =4000;}else if(
+	strcmp(p15,i5)==0){rlst =1000;}else if(
+	strcmp(p16,i6)==0){rlst =200;}else if(
+	
+	strcmp(p22,i2)==0){rlst =40000;}else if(
+	strcmp(p23,i3)==0){rlst =10000;}else if(
+	strcmp(p24,i4)==0){rlst =4000;}else if(
+	strcmp(p25,i5)==0){rlst =1000;}else if(
+	strcmp(p26,i6)==0){rlst =200;}else if(
+	
+	strcmp(p32,i2)==0){rlst =40000;}else if(
+	strcmp(p33,i3)==0){rlst =10000;}else if(
+	strcmp(p34,i4)==0){rlst =4000;}else if(
+	strcmp(p35,i5)==0){rlst =1000;}else if(
+	strcmp(p36,i6)==0){rlst =200;}else {rlst =0;}
 
 	/*
 	   scn_chk(ssp,8);

@@ -3,7 +3,7 @@
 #include <string.h>
 
 #define LEN 10
-
+int ex =-1;
 /*
  * 
  * sub fuction need put before main
@@ -21,28 +21,53 @@
  * 如果輸入錯誤，直接重來，沒有提示訊息!
  */
 
+//C-sub_string
+
+/*
+ * how to use:
+ * substr(t, s, 6, 5);
+ * t = out put
+ * s = in put
+ */
+ void substr(char *dest, const char* src, unsigned int start, unsigned int cnt) {
+	   strncpy(dest, src + start, cnt);
+	   dest[cnt] = 0;
+	 }
+
+/*
 int try_pr(){
 	//string abc "abc";
 	int II=17;
 	printf("OK");
 	return (0);
 }
+*/
 
 int scn_chk (char* tar_string ,int how_meny){
 	size_t length_=strlen(tar_string);
 	//	printf("%lu",length_);
 
 	if((int)length_==how_meny){
-		//		printf("fit\n");
+		printf("輸入成功\n");
 		return (1);
 	}else{
-//		printf("not_fit\n");
+		if(ex!=0){
+			printf("輸入錯誤\n");
+		}
+		ex++;
 		return (0);
 	}
 
 
 	return (-1);
 }
+
+int comp(char* targ,char* moth){
+
+
+}
+
+
 
 int main()
 
@@ -79,34 +104,43 @@ int main()
 
 	printf("統一發票兌獎系統\n");
 	printf("請輸入:\n");
+	ex = 0;
 	while(scn_chk( ssp,8)==0){
 		printf("a. 特別獎\n");
 		scanf("%s",ssp); 
 	}
+	ex = 0;
 	while(scn_chk(sp ,8)==0){
+
 		printf("b. 特獎\n");
 		scanf("%s",sp);
 	}
+	ex = 0;
 	while(scn_chk(hd1 ,8)==0){
 		printf("c. 頭獎的 第一組號碼\n");
 		scanf("%s",hd1);
 	}
+	ex = 0;
 	while(scn_chk(hd2 ,8)==0){
 		printf("d. 頭獎的 第二組號碼\n");
 		scanf("%s",hd2);
 	}
+	ex = 0;
 	while(scn_chk( hd3,8)==0){
 		printf("e. 頭獎的 第三組號碼\n");
 		scanf("%s",hd3);
 	}
+	ex = 0;
 	while(scn_chk( six1,3)==0){
 		printf("f. 增開六獎的 第一組號碼\n");
 		scanf("%s",six1);
 	}
+	ex = 0;
 	while(scn_chk( six2,3)==0){
 		printf("g. 增開六獎的 第二組號碼\n");
 		scanf("%s",six2);
 	}
+	ex = 0;
 	while(scn_chk(six3 ,3)==0){
 		printf("h. 增開六獎的 第三組號碼\n");
 		scanf("%s",six3);
@@ -132,6 +166,11 @@ int main()
 	printf("\nh. 增開六獎的 第三組號碼\n");
 	printf("%s",six3);
 
+
+printf("\n請輸入待測發票:\n");
+	char *input_num=malloc(LEN+1);
+	strcpy(input_num," "); 
+scanf("%s",input_num);
 
 
 	/*

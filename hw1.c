@@ -62,10 +62,7 @@ int scn_chk (char* tar_string ,int how_meny){
 	return (-1);
 }
 
-int comp(char* targ,char* moth){
 
-
-}
 
 
 

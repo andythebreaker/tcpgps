@@ -29,17 +29,17 @@ int ex =-1;
  * t = out put
  * s = in put
  */
- void substr(char *dest, const char* src, unsigned int start, unsigned int cnt) {
-	   strncpy(dest, src + start, cnt);
-	   dest[cnt] = 0;
-	 }
+void substr(char *dest, const char* src, unsigned int start, unsigned int cnt) {
+	strncpy(dest, src + start, cnt);
+	dest[cnt] = 0;
+}
 
 /*
-int try_pr(){
-	//string abc "abc";
-	int II=17;
-	printf("OK");
-	return (0);
+   int try_pr(){
+//string abc "abc";
+int II=17;
+printf("OK");
+return (0);
 }
 */
 
@@ -51,7 +51,7 @@ int scn_chk (char* tar_string ,int how_meny){
 		printf("輸入成功\n");
 		return (1);
 	}else{
-		if(ex!=0){
+		if(ex>0){
 			printf("輸入錯誤\n");
 		}
 		ex++;
@@ -162,106 +162,109 @@ int main()
 	printf("%s",six2);
 	printf("\nh. 增開六獎的 第三組號碼\n");
 	printf("%s",six3);
-
+	
+	int zzct = -1;
+	
+	while(zzct!=0){
 	char *input_num=malloc(LEN+1);
 	strcpy(input_num," "); 
-	
+
 	ex = 0;
 	while(scn_chk(input_num ,8)==0){
 		printf("\n請輸入待測發票:\n");
 		scanf("%s",input_num);
-		
+
 	}
-	
-	
-int rlst =0;
 
-	
-	
 
-	
+	int rlst =0;
+
+
+
+
+
 	char *p12=malloc(LEN+1);
 	char *p13=malloc(LEN+1);
 	char *p14=malloc(LEN+1);
 	char *p15=malloc(LEN+1);
 	char *p16=malloc(LEN+1);
-	
+
 	char *p22=malloc(LEN+1);
 	char *p23=malloc(LEN+1);
 	char *p24=malloc(LEN+1);
 	char *p25=malloc(LEN+1);
 	char *p26=malloc(LEN+1);
-	
+
 	char *p32=malloc(LEN+1);
 	char *p33=malloc(LEN+1);
 	char *p34=malloc(LEN+1);
 	char *p35=malloc(LEN+1);
 	char *p36=malloc(LEN+1);
-	
+
 	char *i2=malloc(LEN+1);
 	char *i3=malloc(LEN+1);
 	char *i4=malloc(LEN+1);
 	char *i5=malloc(LEN+1);
 	char *i6=malloc(LEN+1);
-	
+
 	char *input_3=malloc(LEN+1);
-substr(input_3,input_num,5,3);
+	substr(input_3,input_num,5,3);
 	substr(p12,hd1,1,7);
 	substr(p13,hd1,2,6);
 	substr(p14,hd1,3,5);
 	substr(p15,hd1,4,4);
 	substr(p16,hd1,5,3);
-	
+
 	substr(p22,hd2,1,7);
 	substr(p23,hd2,2,6);
 	substr(p24,hd2,3,5);
 	substr(p25,hd2,4,4);
 	substr(p26,hd2,5,3);
-	
+
 	substr(p32,hd3,1,7);
 	substr(p33,hd3,2,6);
 	substr(p34,hd3,3,5);
 	substr(p35,hd3,4,4);
 	substr(p36,hd3,5,3);
-	
+
 	substr(i2,input_num,1,7);
 	substr(i3,input_num,2,6);
 	substr(i4,input_num,3,5);
 	substr(i5,input_num,4,4);
 	substr(i6,input_num,5,3);
-	
-	
+
+
 	if(strcmp(ssp,input_num)==0){rlst =10000000;}else if(
-	strcmp(sp,input_num)==0){rlst =2000000;}else if(
-	strcmp(hd1,input_num)==0){rlst =200000;}else if(
-	strcmp(hd2,input_num)==0){rlst =200000;}else if(
-	strcmp(hd3,input_num)==0){rlst =200000;}else if(
-		
-		strcmp(p12,i2)==0){rlst =40000;}else if(
-		strcmp(p22,i2)==0){rlst =40000;}else if(
-		strcmp(p32,i2)==0){rlst =40000;}else if(
-		
-		strcmp(p13,i3)==0){rlst =10000;}else if(
-		strcmp(p23,i3)==0){rlst =10000;}else if(
-		strcmp(p33,i3)==0){rlst =10000;}else if(
-		
-		strcmp(p14,i4)==0){rlst =4000;}else if(
-		strcmp(p24,i4)==0){rlst =4000;}else if(
-		strcmp(p34,i4)==0){rlst =4000;}else if(
-		
-		strcmp(p15,i5)==0){rlst =1000;}else if(
-		strcmp(p25,i5)==0){rlst =1000;}else if(
-		strcmp(p35,i5)==0){rlst =1000;}else if(
-		
-	strcmp(p16,i6)==0){rlst =200;}else if(
-	
-	strcmp(p26,i6)==0){rlst =200;}else if(
-	
-	strcmp(p36,i6)==0){rlst =200;}else if(
-	strcmp(six1,input_3)==0){rlst =-200;}else if(
-	strcmp(six2,input_3)==0){rlst =-200;}else if(
-	strcmp(six3,input_3)==0){rlst =-200;}
-	
+			strcmp(sp,input_num)==0){rlst =2000000;}else if(
+			strcmp(hd1,input_num)==0){rlst =200000;}else if(
+			strcmp(hd2,input_num)==0){rlst =200000;}else if(
+			strcmp(hd3,input_num)==0){rlst =200000;}else if(
+
+			strcmp(p12,i2)==0){rlst =40000;}else if(
+			strcmp(p22,i2)==0){rlst =40000;}else if(
+			strcmp(p32,i2)==0){rlst =40000;}else if(
+
+			strcmp(p13,i3)==0){rlst =10000;}else if(
+			strcmp(p23,i3)==0){rlst =10000;}else if(
+			strcmp(p33,i3)==0){rlst =10000;}else if(
+
+			strcmp(p14,i4)==0){rlst =4000;}else if(
+			strcmp(p24,i4)==0){rlst =4000;}else if(
+			strcmp(p34,i4)==0){rlst =4000;}else if(
+
+			strcmp(p15,i5)==0){rlst =1000;}else if(
+			strcmp(p25,i5)==0){rlst =1000;}else if(
+			strcmp(p35,i5)==0){rlst =1000;}else if(
+
+			strcmp(p16,i6)==0){rlst =200;}else if(
+
+			strcmp(p26,i6)==0){rlst =200;}else if(
+
+			strcmp(p36,i6)==0){rlst =200;}else if(
+			strcmp(six1,input_3)==0){rlst =-200;}else if(
+			strcmp(six2,input_3)==0){rlst =-200;}else if(
+			strcmp(six3,input_3)==0){rlst =-200;}
+
 	else {rlst =0;}
 
 	/*
@@ -276,61 +279,86 @@ substr(input_3,input_num,5,3);
 	   printf("%d",ip);
 	   try_pr();
 	   */
-//printf("%d",rlst);
-	
+	//printf("%d",rlst);
+
 	int no_use =0;
 	char *op_mon=malloc(LEN+1);
 	strcpy(op_mon,"\n中獎!\n中獎結果:");
-	
+
 	if (rlst<0){
-	strncat(op_mon,"增開",3*2);
+		strncat(op_mon,"增開",3*2);
 		rlst+=400;
 		no_use=1;
 	}else if (rlst==0){
-	strcpy(op_mon,"\n==未中獎==\n");
+		strcpy(op_mon,"\n==未中獎==\n");
 	}else{
-	no_use=1;
+		no_use=1;
 	}
 	if(no_use==1){
-	switch (rlst){
-		case 10000000:
-			strncat(op_mon,"特別獎",4*2);
-			break;
+		switch (rlst){
+			case 10000000:
+				strncat(op_mon,"特別獎",4*2);
+				break;
 			case 2000000:
-			strncat(op_mon,"特獎",3*2);
-			break;
+				strncat(op_mon,"特獎",3*2);
+				break;
 			case 200000:
-			strncat(op_mon,"頭獎",3*2);
-			break;
+				strncat(op_mon,"頭獎",3*2);
+				break;
 			case 40000:
-			strncat(op_mon,"二獎",3*2);
-			break;
-			
+				strncat(op_mon,"二獎",3*2);
+				break;
+
 			case 10000:
-			strncat(op_mon,"三獎",3*2);
-			break;
-			
+				strncat(op_mon,"三獎",3*2);
+				break;
+
 			case 4000:
-			strncat(op_mon,"四獎",3*2);
-			break;
-			
+				strncat(op_mon,"四獎",3*2);
+				break;
+
 			case 1000:
-			strncat(op_mon,"五獎",3*2);
-			break;
-			
+				strncat(op_mon,"五獎",3*2);
+				break;
+
 			case 200:
-			strncat(op_mon,"六獎",3*2);
-			break;
-	}
+				strncat(op_mon,"六獎",3*2);
+				break;
+		}
 	}else{
-	no_use=0;
+		no_use=0;
 	}
-	
+
 	printf("%s",op_mon);
-	printf("\n);
-	       printf("中獎金額:%d\n",rlst);
-	
-	
+	printf("\n");
+	printf("中獎金額:%d\n",rlst);
+
+	char *ct=malloc(LEN+1);
+	strcpy(ct,""); 
+
+	ex = -99999;//!!!!!!!!!!!
+	int zzct =-1;
+	while((scn_chk(ct ,1)==0)&&zzct==-1){
+if(ex!=-9999){
+printf("\n<錯誤>\n");
+}
+		printf("\n要繼續輸入請按1、不要請按0\n");
+
+		scanf("%s",ct);
+		if(strcmp(ct,"1")==0){
+			zzct=1;
+		}else if(strcmp(ct,"1")==0)
+		{
+			zzct=0;
+		}else{
+			zzct=-1;
+		}
+
+
+	}
+
+}
+printf("\nfinish\n");
 	return 0;
 
 }

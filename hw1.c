@@ -276,7 +276,59 @@ substr(input_3,input_num,5,3);
 	   printf("%d",ip);
 	   try_pr();
 	   */
-printf("%d",rlst);
+//printf("%d",rlst);
+	
+	int no_use =0;
+	char op_mon=malloc(LEN+1);
+	strcpy(op_mon,"\n中獎!\n中獎結果:");
+	
+	if (rlst<0){
+	strncat(op_mon,"增開",3);
+		rlst+=400;
+		no_use=1;
+	}else if (rlst==0){
+	strcpy(op_mon,"\n==未中獎==\n");
+	}else{
+	no_use=1;
+	}
+	if(no_use==1){
+	switch (rlst){
+		case 10000000:
+			strncat(op_mon,"特別獎",4);
+			break;
+			case 2000000:
+			strncat(op_mon,"特獎",3);
+			break;
+			case 200000:
+			strncat(op_mon,"頭獎",3);
+			break;
+			case 40000:
+			strncat(op_mon,"二獎",3);
+			break;
+			
+			case 10000:
+			strncat(op_mon,"三獎",3);
+			break;
+			
+			case 4000:
+			strncat(op_mon,"四獎",3);
+			break;
+			
+			case 1000:
+			strncat(op_mon,"五獎",3);
+			break;
+			
+			case 200:
+			strncat(op_mon,"六獎",3);
+			break;
+	}
+	}else{
+	no_use=0;
+	}
+	
+	
+	
+	
 	return 0;
 
 }

@@ -56,6 +56,15 @@ int main()
 	char *six1 =malloc(LEN+1);
 	char *six2 =malloc(LEN+1);
 	char *six3=malloc(LEN+1);
+	strcpy(ssp," "); 
+	strcpy(sp," ");
+	strcpy(hd1," ");
+	strcpy(hd2," ");
+	strcpy(hd3," ");
+	strcpy(six1," ");
+	strcpy(six2," ");
+	strcpy(six3," ");
+	/*
 	strcpy(ssp,"12345678"); 
 	strcpy(sp,"87654321");
 	strcpy(hd1,"11111111");
@@ -64,25 +73,43 @@ int main()
 	strcpy(six1,"123");
 	strcpy(six2,"456");
 	strcpy(six3,"789");
+	*/
 
 	printf("統一發票兌獎系統\n");
 	printf("請輸入:\n");
+	for(scn_chk( ssp,8)==0){
 	printf("a. 特別獎\n");
 	scanf("%s",ssp); 
+	}
+		for(scn_chk(sp ,8)==0){
 	printf("b. 特獎\n");
 	scanf("%s",sp);
+		}
+			for(scn_chk(hd1 ,8)==0){
 	printf("c. 頭獎的 第一組號碼\n");
 	scanf("%s",hd1);
+			}
+				for(scn_chk(hd2 ,8)==0){
 	printf("d. 頭獎的 第二組號碼\n");
 	scanf("%s",hd2);
+				}
+					for(scn_chk( hd3,8)==0){
 	printf("e. 頭獎的 第三組號碼\n");
 	scanf("%s",hd3);
+					}
+						for(scn_chk( six1,8)==0){
 	printf("f. 增開六獎的 第一組號碼\n");
 	scanf("%s",six1);
+						}
+							for(scn_chk( six2,8)==0){
 	printf("g. 增開六獎的 第二組號碼\n");
 	scanf("%s",six2);
+							}
+								for(scn_chk(six3 ,8)==0){
 	printf("h. 增開六獎的 第三組號碼\n");
 	scanf("%s",six3);
+								}
+	
 
 	printf("\n所有獎項\n");
 

@@ -236,27 +236,33 @@ substr(input_3,input_num,5,3);
 	strcmp(hd1,input_num)==0){rlst =200000;}else if(
 	strcmp(hd2,input_num)==0){rlst =200000;}else if(
 	strcmp(hd3,input_num)==0){rlst =200000;}else if(
-	strcmp(six1,input_3)==0){rlst =-200;}else if(
-	strcmp(six2,input_3)==0){rlst =-200;}else if(
-	strcmp(six3,input_3)==0){rlst =-200;}else if(
-	
-	strcmp(p12,i2)==0){rlst =40000;}else if(
-	strcmp(p13,i3)==0){rlst =10000;}else if(
-	strcmp(p14,i4)==0){rlst =4000;}else if(
-	strcmp(p15,i5)==0){rlst =1000;}else if(
+		
+		strcmp(p12,i2)==0){rlst =40000;}else if(
+		strcmp(p22,i2)==0){rlst =40000;}else if(
+		strcmp(p32,i2)==0){rlst =40000;}else if(
+		
+		strcmp(p13,i3)==0){rlst =10000;}else if(
+		strcmp(p23,i3)==0){rlst =10000;}else if(
+		strcmp(p33,i3)==0){rlst =10000;}else if(
+		
+		strcmp(p14,i4)==0){rlst =4000;}else if(
+		strcmp(p24,i4)==0){rlst =4000;}else if(
+		strcmp(p34,i4)==0){rlst =4000;}else if(
+		
+		strcmp(p15,i5)==0){rlst =1000;}else if(
+		strcmp(p25,i5)==0){rlst =1000;}else if(
+		strcmp(p35,i5)==0){rlst =1000;}else if(
+		
 	strcmp(p16,i6)==0){rlst =200;}else if(
 	
-	strcmp(p22,i2)==0){rlst =40000;}else if(
-	strcmp(p23,i3)==0){rlst =10000;}else if(
-	strcmp(p24,i4)==0){rlst =4000;}else if(
-	strcmp(p25,i5)==0){rlst =1000;}else if(
 	strcmp(p26,i6)==0){rlst =200;}else if(
 	
-	strcmp(p32,i2)==0){rlst =40000;}else if(
-	strcmp(p33,i3)==0){rlst =10000;}else if(
-	strcmp(p34,i4)==0){rlst =4000;}else if(
-	strcmp(p35,i5)==0){rlst =1000;}else if(
-	strcmp(p36,i6)==0){rlst =200;}else {rlst =0;}
+	strcmp(p36,i6)==0){rlst =200;}else if(
+	strcmp(six1,input_3)==0){rlst =-200;}else if(
+	strcmp(six2,input_3)==0){rlst =-200;}else if(
+	strcmp(six3,input_3)==0){rlst =-200;}
+	
+	else {rlst =0;}
 
 	/*
 	   scn_chk(ssp,8);

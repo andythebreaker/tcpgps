@@ -163,11 +163,22 @@ int main()
 	printf("\nh. 增開六獎的 第三組號碼\n");
 	printf("%s",six3);
 
-int rlst =0;
-printf("\n請輸入待測發票:\n");
 	char *input_num=malloc(LEN+1);
 	strcpy(input_num," "); 
-scanf("%s",input_num);
+	
+	ex = 0;
+	while(scn_chk(input_num ,8)==0){
+		printf("\n請輸入待測發票:\n");
+		scanf("%s",input_num);
+		
+	}
+	
+	
+int rlst =0;
+
+	
+	
+
 	
 	char *p12=malloc(LEN+1);
 	char *p13=malloc(LEN+1);
@@ -259,7 +270,7 @@ substr(input_3,input_num,5,3);
 	   printf("%d",ip);
 	   try_pr();
 	   */
-
+printf("%d",rlst);
 	return 0;
 
 }

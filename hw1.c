@@ -279,7 +279,7 @@ substr(input_3,input_num,5,3);
 //printf("%d",rlst);
 	
 	int no_use =0;
-	char op_mon=malloc(LEN+1);
+	char *op_mon=malloc(LEN+1);
 	strcpy(op_mon,"\n中獎!\n中獎結果:");
 	
 	if (rlst<0){

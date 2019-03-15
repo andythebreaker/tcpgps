@@ -336,8 +336,9 @@ int main()
 	char *ct=malloc(LEN+1);
 	strcpy(ct,""); 
 
-	ex = -99999;//!!!!!!!!!!!
-	int zzct =-1;
+//	ex = -99999;//!!!!!!!!!!!
+//	int zzct =-1;
+/*
 	while((scn_chk(ct ,1)==0)&&zzct==-1){
 if(ex!=-9999){
 printf("\n<錯誤>\n");
@@ -351,11 +352,36 @@ printf("\n<錯誤>\n");
 		{
 			zzct=0;
 		}else{
-			zzct=-1;
+	zzct=-1;
 		}
 
 
 	}
+*/
+	int input_ok = 0;
+	while(input_ok ==0){
+		printf("\n要繼續輸入請按1、不要請按0\n");
+
+		scanf("%s",ct);
+		size_t length_2=strlen(ct);
+		if((length_2==1)&&((strcmp(ct,"0")==0)||(strcmp(ct,"0")==1))){
+			printf("\ninput success\n");
+input_ok=1;
+if(strcmp(ct,"0")==0){
+zzct=0;
+			printf("\n<stop>\n");
+}else{
+zzct=1;
+			printf("\ncontinue\n");
+}
+
+		}else{
+			printf("\ninput error!!\n");
+input_ok=0;	
+		}
+
+	}
+
 
 }
 printf("\nfinish\n");

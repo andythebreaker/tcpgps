@@ -13,6 +13,15 @@
 
 int WWWchart=0;
 
+void error(int i){
+switch (i){
+	case 1:
+		printf("\nerror\ndue to bad input\n");
+break;
+}
+
+}
+
 void substr(char *dest, const char* src, unsigned int start, unsigned int cnt) {
 	strncpy(dest, src + start, cnt);
 	dest[cnt] = 0;
@@ -430,7 +439,151 @@ return -4;
 	return -1;
 }
 
+int abs(int absI){
+if(absI<0){
+return (0-absI);
+}else{
+return (absI);
+}
+}
 
+int pre_convert(int x1,int y1 ,int x2,int y2,int must_be){
+
+	int returN((abs(x2-x1)+1)*(abs(y2-y1)+1));
+if(returN!=must_be){
+return (-1);
+}
+
+	return (returN);
+}
+
+void convert2ptTOseries(int *targ,int sz, int x1,int y1,int x2,int y2){
+int x= ((abs(x2-x1)+1);
+		int y= (abs(y2-y1)+1));
+int x_=-1;
+int y_=-1;
+
+if(x1<x2){
+x_=x1;
+}else{x_=x2;}
+
+if(y1<y2){
+y_=y1;
+}else{
+y_=y2;
+}
+
+	for(int i = 0 ; i < sz ;i+=2){
+targ[i]=x_+(i+1)%x;
+	targ[i+1]=y_+(i+1)%y;
+}
+}
+
+int save(int *impdata,int sz,int *targdata){
+int boatk=-1;
+switch(sz/2){
+	case 2:
+		boatk=1;
+		break;
+	case 3:
+		boatk=3;
+		break;
+	case 4:
+		boatk=4;
+		break;
+}
+
+for(int i = 0 ; i <sz ; i+=2){
+data_in(impdata[i],impdata[i+1],boatk,targdata);
+}
+}
+
+int boatSET(int *space,int sz,int x1,int y1,int x2,int y2,int *dataIN){
+ convert2ptTOseries(space,sz, x1,y1, x2, y2);
+int ok= check_if_connect(space,sz);
+if(ok=1){
+save(space,sz,dataIN);
+return 1;
+}else{
+return (ok);
+}
+}
+
+int usr_set_boat_input(int boatk){
+int x1,x2,y1,y2;
+char a,b;
+int go =1;
+
+while(go==1){
+	printf("\n請部屬");
+switch(boatk):{
+	case 2:
+		printf(boat2);
+		break;
+	case 3:
+		print(boat3);
+		break;
+		case 4:
+		printf(boat4);
+		break;
+}
+printf("(形如_-_,_-_)\n");
+
+	scanf("%c-%d,%c-%d",a,y1,b,y2);
+if((y1<=7)&&(y2<=7)){
+if(((int)a<=(int)'g')&&((int)a>=(int)'a'))&&(((int)b<=(int)'g')&&((int)a>=(int)'a')){
+x1=((int)a-(int)'a')+1;
+x2=((int)b-(int)'a')+1;
+go=0;
+}else{
+if(((int)a<=(int)'G')&&((int)a>=(int)'A'))&&(((int)b<=(int)'G')&&((int)a>=(int)'A')){
+x1=((int)a-(int)'A')+1;
+x2=((int)b-(int)'A')+1;
+go=0;
+
+}else{
+	printf("\ninput error\n");
+
+}
+}
+}else{
+
+	printf("\ninput error\n");
+
+}
+}
+return (x1*1000+y1*100+x2*10+y2);
+}
+
+int ATTconsol(){
+
+int x,y;
+char a;
+int go =1;
+
+while(go==1){
+	printf("\n請攻擊");
+
+printf("(形如_-_)\n");
+	scanf("%c-%d",a,y);
+if(y<=7){
+if(((int)a<=(int)'g')&&((int)a>=(int)'a')){
+x=((int)a-(int)'a')+1;
+go=0;
+}else{
+if(((int)a<=(int)'G')&&((int)a>=(int)'A')){
+x=((int)a-(int)'A')+1;
+go=0;
+}else{
+	printf("\ninput error\n");
+}
+}
+}else{
+	printf("\ninput error\n");
+}
+}
+return (x*10+y);
+}
 
 
 
@@ -441,10 +594,136 @@ int main()
 	int SZ = (CHART_X_HOWMANY*CHART_Y_HOWMANY*(int)sizeof(char));
 	char *str49=malloc(SZ);
 	strcpy(str49,"abcdefghijklmnopqrstuvwxyz0123456789@#$9876543210");
-	int data[SZ];
+	int data1[SZ];
+	int data2[sz];
 	initallize(0,data,sizeof(data));
-	int win[kind_of_boat];
-	initallize(0,win,sizeof(win));
+	int win1[kind_of_boat];
+	initallize(0,win1,sizeof(win1));
+	int win2[kind_of_boat];
+	initallize(0,win2,sizeof(win2));
+	int go,x,y,buf,x1,y1,x2,y2;
+//main flow
+printf("\n=====海戰棋=====\n");
+go=1;
+while(go==1){
+printf("user_甲\n");
+plot_boat(data1,SZ,str49,SZ);
+buf=usr_set_boat_input(4);
+x1=buf/1000;
+y1=(buf%1000)/100;
+x2=(buf%100)/10;
+y2=buf%10;
+int mac=pre_convert(x1,y1,x2,y2,4*2);
+if(mac==-1){error(1);go=1;continue;}
+int *blank=malloc(mac);
+int ok=boatSET(blank,mac,x1,y1,x2,y2,data1);
+if(mac==-1){error(2);go=1;continue;}
+go=0;
+plot_boat(data1,SZ,str49,SZ);
+
+}
+go=1;
+while(go==1){
+printf("user_甲\n");
+plot_boat(data1,SZ,str49,SZ);
+buf=usr_set_boat_input(3);
+x1=buf/1000;
+y1=(buf%1000)/100;
+x2=(buf%100)/10;
+y2=buf%10;
+int mac=pre_convert(x1,y1,x2,y2,3*2);
+if(mac==-1){error(1);go=1;continue;}
+int *blank=malloc(mac);
+int ok=boatSET(blank,mac,x1,y1,x2,y2,data1);
+if(mac==-1){error(2);go=1;continue;}
+go=0;
+plot_boat(data1,SZ,str49,SZ);
+
+}
+go=1;
+while(go==1){
+printf("user_甲\n");
+plot_boat(data1,SZ,str49,SZ);
+buf=usr_set_boat_input(2);
+x1=buf/1000;
+y1=(buf%1000)/100;
+x2=(buf%100)/10;
+y2=buf%10;
+int mac=pre_convert(x1,y1,x2,y2,2*2);
+if(mac==-1){error(1);go=1;continue;}
+int *blank=malloc(mac);
+int ok=boatSET(blank,mac,x1,y1,x2,y2,data1);
+if(mac==-1){error(2);go=1;continue;}
+go=0;
+plot_boat(data1,SZ,str49,SZ);
+
+}
+go=1;
+while(go==1){
+printf("user_乙\n");
+plot_boat(data2,SZ,str49,SZ);
+buf=usr_set_boat_input(4);
+x1=buf/1000;
+y1=(buf%1000)/100;
+x2=(buf%100)/10;
+y2=buf%10;
+int mac=pre_convert(x1,y1,x2,y2,4*2);
+if(mac==-1){error(1);go=1;continue;}
+int *blank=malloc(mac);
+int ok=boatSET(blank,mac,x1,y1,x2,y2,data2);
+if(mac==-1){error(2);go=1;continue;}
+go=0;
+plot_boat(data2,SZ,str49,SZ);
+
+}
+go=1;
+while(go==1){
+printf("user_乙\n");
+plot_boat(data2,SZ,str49,SZ);
+buf=usr_set_boat_input(3);
+x1=buf/1000;
+y1=(buf%1000)/100;
+x2=(buf%100)/10;
+y2=buf%10;
+int mac=pre_convert(x1,y1,x2,y2,3*2);
+if(mac==-1){error(1);go=1;continue;}
+int *blank=malloc(mac);
+int ok=boatSET(blank,mac,x1,y1,x2,y2,data2);
+if(mac==-1){error(2);go=1;continue;}
+go=0;
+plot_boat(data2,SZ,str49,SZ);
+
+}
+go=1;
+while(go==1){
+printf("user_甲\n");
+plot_boat(data2,SZ,str49,SZ);
+buf=usr_set_boat_input(2);
+x1=buf/1000;
+y1=(buf%1000)/100;
+x2=(buf%100)/10;
+y2=buf%10;
+int mac=pre_convert(x1,y1,x2,y2,2*2);
+if(mac==-1){error(1);go=1;continue;}
+int *blank=malloc(mac);
+int ok=boatSET(blank,mac,x1,y1,x2,y2,data2);
+if(mac==-1){error(2);go=1;continue;}
+go=0;
+plot_boat(data2,SZ,str49,SZ);
+
+}
+
+//big att ru
+printf("\n甲玩家的棋盤\n");
+plot_bord(data2,SZ,str49,SZ);
+
+buf=ATTconsol();
+x=buf/10;
+y=buf%10;
+ att_changer(data2,SZ,x,y,int *winIN,int winINsz){
+	
+
+ }
 
 	/*
 	 *data_info
@@ -453,7 +732,8 @@ int main()
 	 *boat_hited::abc=268
 	 *empty_hit=5
 	 */
-
+//test
+/*
 	print_raw_data(data,sizeof(data));
 	data_in(1,6,1,data);
 	data_in(5,7,2,data);
@@ -461,6 +741,8 @@ int main()
 	plot_boat(data,SZ,str49,SZ);
 	plot_bord(data,SZ,str49,SZ);
 	plot_all(data,SZ,str49,SZ);
+*/
+
 	//	int2plot(data,SZ,str49,SZ);
 	//	boat(data,SZ,str49,SZ);
 	//bord(data,SZ,str49,SZ);
@@ -470,9 +752,12 @@ int main()
 
 	//	cls(str49,SZ);
 	//	plot_map(str49);
+//test
+/*
 	eNter();
 	int see[4] = {7,5,7,6};
 	printf("\n%d\n",check_if_connect(see,sizeof(see)));
+*/
 	return 0;
 
 }

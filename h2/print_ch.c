@@ -449,7 +449,7 @@ int abs(int absI){
 
 int pre_convert(int x1,int y1 ,int x2,int y2,int must_be){
 
-  int returN((abs(x2-x1)+1)*(abs(y2-y1)+1));
+  int returN=((abs(x2-x1)+1)*(abs(y2-y1)+1));
   if(returN!=must_be){
     return (-1);
   }
@@ -458,8 +458,8 @@ int pre_convert(int x1,int y1 ,int x2,int y2,int must_be){
 }
 
 void convert2ptTOseries(int *targ,int sz, int x1,int y1,int x2,int y2){
-  int x= ((abs(x2-x1)+1);
-      int y= (abs(y2-y1)+1));
+  int x= (abs(x2-x1)+1);
+  int y= abs(y2-y1)+1;
   int x_=-1;
   int y_=-1;
 
@@ -516,7 +516,7 @@ int usr_set_boat_input(int boatk){
 
   while(go==1){
     printf("\n請部屬");
-    switch(boatk):{
+    switch(boatk){
       case 2:
         printf(boat2);
         break;
@@ -531,12 +531,25 @@ int usr_set_boat_input(int boatk){
 
     scanf("%c-%d,%c-%d",a,y1,b,y2);
     if((y1<=7)&&(y2<=7)){
-      if(((int)a<=(int)'g')&&((int)a>=(int)'a'))&&(((int)b<=(int)'g')&&((int)a>=(int)'a'))){
+      if((
+            ((int)a<=(int)'g')
+            &&
+            ((int)a>=(int)'a')
+         ) &&(
+           ((int)b<=(int)'g')
+           &&
+           ((int)a>=(int)'a')
+           )){
         x1=((int)a-(int)'a')+1;
         x2=((int)b-(int)'a')+1;
         go=0;
-      } }else{
-        if(((int)a<=(int)'G')&&((int)a>=(int)'A'))&&(((int)b<=(int)'G')&&((int)a>=(int)'A')){
+       }else{
+        if((
+              ((int)a<=(int)'G')
+              &&((int)a>=(int)'A'))
+            &&(((int)b<=(int)'G')
+              &&((int)a>=(int)'A')
+              )){
           x1=((int)a-(int)'A')+1;
           x2=((int)b-(int)'A')+1;
           go=0;
@@ -545,14 +558,14 @@ int usr_set_boat_input(int boatk){
           printf("\ninput error\n");
 
         }
-      }
-    }else{
+      
+  }}else{
 
-      printf("\ninput error\n");
+    printf("\ninput error\n");
 
-    }
   }
-  return (x1*1000+y1*100+x2*10+y2);
+}
+return (x1*1000+y1*100+x2*10+y2);
 }
 
 int ATTconsol(){
@@ -596,7 +609,8 @@ int main()
   strcpy(str49,"abcdefghijklmnopqrstuvwxyz0123456789@#$9876543210");
   int data1[SZ];
   int data2[SZ];
-  initallize(0,data,sizeof(data));
+  initallize(0,data1,sizeof(data1));
+  initallize(0,data2,sizeof(data2));
   int win1[kind_of_boat];
   initallize(0,win1,sizeof(win1));
   int win2[kind_of_boat];

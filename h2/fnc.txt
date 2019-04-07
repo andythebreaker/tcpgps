@@ -4,15 +4,22 @@ output/FCNname/input/.../...[/X::no use]
 v RPS. void and str RPS string(char[])
 RPS.:代表
 特別地:for all input []/int RPS. array/array size
+      因為C語言array傳址特性，所有要回傳string的fnc都不用return，直接下void改址
 
 v/error/int
+  :輸出各式錯誤訊息
 v/substr/str/str/int/int//X
-int/op/int/int/str//X
+  :X 
+int/op/int/int/str/X
+  :X
 v/charUD/v
+  :印出表格的行框線
+下3功能為印出表格::
 v/chart_row/str/int
 v/plot_map/str
 int/connection/int[]/int
   :dis. 是否在一直線上
+下面的功能處裡資料
 v/sort_CON_bubble/int[]/int
 int/sortED_together/int[]/int
 int/check_if_connect/int[]/int

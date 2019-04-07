@@ -1,0 +1,38 @@
+for all fcn in C
+as :
+output/FCNname/input/.../...[/X::no use]
+v RPS. void and str RPS string(char[])
+RPS.:代表
+特別地:for all input []/int RPS. array/array size
+
+v/error/int
+v/substr/str/str/int/int//X
+int/op/int/int/str//X
+v/charUD/v
+v/chart_row/str/int
+v/plot_map/str
+int/connection/int[]/int
+  :dis. 是否在一直線上
+v/sort_CON_bubble/int[]/int
+int/sortED_together/int[]/int
+int/check_if_connect/int[]/int
+v/cls/str/int
+v/initallize/int/int[]/int
+v/print_raw_data/int[]/int
+v/data_int/int/int/int/int
+v/int2polt/int[]/int/str/int
+v/boat/int[]/int/str/int
+v/bord/int[]/int/str/int
+v/plot_bord/int[]/int/str/int
+v/plot_boat/int[]/int/str/int
+v/plot_all/int[]/int/str/int
+int/die_check/int[]/int/int[]/int
+int/vic/int[]/int
+int att_changer/int[]/int/int/int/int[]/int
+int/abs/int
+int/pre_convert/int/int/int/int/int
+v/convert2ptTOseries/int[]/int/int/int/int/int
+int/save/int[]/int/int[]
+int/boatSET/int[]/int/int/int/int/int/int[]
+int/usr_set_boat_input/int
+int/ATTconaol/?!

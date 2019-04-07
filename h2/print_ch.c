@@ -400,7 +400,7 @@ int vic(int *WINtarg,int WINsz){
   }
   return(win_buf);
 }
-
+/*
 int att_changer(int *dat,int sz,int x,int y,int *winIN,int winINsz){
   int index=(x-1)*7+y-1;
   if(dat[index]==0){
@@ -438,7 +438,7 @@ int att_changer(int *dat,int sz,int x,int y,int *winIN,int winINsz){
 
   return -1;
 }
-
+*/
 int abs(int absI){
   if(absI<0){
     return (0-absI);
@@ -521,7 +521,7 @@ int usr_set_boat_input(int boatk){
         printf(boat2);
         break;
       case 3:
-        print(boat3);
+        printf(boat3);
         break;
       case 4:
         printf(boat4);
@@ -734,44 +734,11 @@ int main()
   buf=ATTconsol();
   x=buf/10;
   y=buf%10;
-  att_changer(data2,SZ,x,y,int *winIN,int winINsz){
+//  att_changer(data2,SZ,x,y,int *winIN,int winINsz)
 
 
-  }
+  
 
-  /*
-   *data_info
-   *un_def=0
-   *boat_a:1;b:3;c:4
-   *boat_hited::abc=268
-   *empty_hit=5
-   */
-  //test
-  /*
-     print_raw_data(data,sizeof(data));
-     data_in(1,6,1,data);
-     data_in(5,7,2,data);
-     print_raw_data(data,sizeof(data));
-     plot_boat(data,SZ,str49,SZ);
-     plot_bord(data,SZ,str49,SZ);
-     plot_all(data,SZ,str49,SZ);
-     */
-
-  //	int2plot(data,SZ,str49,SZ);
-  //	boat(data,SZ,str49,SZ);
-  //bord(data,SZ,str49,SZ);
-
-  //	plot_map(str49);
-
-
-  //	cls(str49,SZ);
-  //	plot_map(str49);
-  //test
-  /*
-     eNter();
-     int see[4] = {7,5,7,6};
-     printf("\n%d\n",check_if_connect(see,sizeof(see)));
-     */
   return 0;
 
 }

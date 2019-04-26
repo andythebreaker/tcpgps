@@ -2,6 +2,13 @@
  * =====NOTAM=====
  * for string => size of
  * need -1 (will auto +1 by system)
+ * vs code "fold all code" ctrl+k ctrl+0
+ * Development progress:
+ * 20190425A
+ * no use "data is full" -> is use ::if a && b (bouth have 9 chess) all finish using 9 chess -OK-
+ * when remove :: if all "in 3 dot" remove any chess  -/?/?OK-
+ * show left people_chess. -OK-
+ * EFO_A
  * ===============
 */
 
@@ -25,12 +32,26 @@
 #define lengthofmapping 48
 #define inputlocateerror "Input Location Is Not Available\n"
 #define greating "\n===Nine chess===\n"
-#define pleaseputyourchest "Enter where to put your chest:\n"
+#define pleaseputyourchest "Enter where to put your chess:\n"
 #define player1 "player1"
 #define player2 "player2"
 #define thisisyourturn "This is your turn:"
 #define finishinputallplace "\n[Finished all input.]\n"
 #define linemapping ",7|12,12|16,4|11,11|19,1|10,10|22,9|13,13|18,2|5,5|8,17|20,20|23,3|15,15|24,6|14,14|21,1-2,2-3,4-5,5-6,7-8,8-9,10-11,11-12,13-14,14-15,16-17,17-18,19-20,20-21,22-23,23-24,"
+#define yougot3inalinepleaserenoveenemychess "You got 3 in a line. Please remove an enemy chess:\n"
+#define PUTSATsatcode 1
+#define RMSATsatcode 2
+#define Alltargetshavebeengroupedbynumberthree 3
+#define CODEOFNOCHESSsatcode 0
+#define ifreturnthiserrorisbignono "ERROR! Unpredictable!\n"
+#define youhavedeletedachessofenemy "You had delete a chess of enemy.\n"
+#define youhadfinishyourinput "You had finish all your chess!\n"
+#define DEFchessleft "Chess Left:"
+#define TheprogramhasstoppedThankyouforusingthisprogram "\n=====\nThe program has stopped! Thank you for using thisp rogram.\n=====\n"
+#define DEFyouwin "You have win the game:"
+#define errordoagain "Error!Do Again!\n"
+#define youcanmoveyourownchesspieces 3
+#define pleasemoveachess "Please move a chess:\n"
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -41,9 +62,10 @@ int fori;
 int blankloop;
 void forireset() { fori = 0; }
 void inputerror() { printf("Input Error!(do again!)"); }
-int inmod(int mymod);
-int put(int locate); /*translate locate=(x,y) -> need input to (y,x)*/
+int inmod(int mymod);             /*input4321->1234*/
+int put(int locate, int satcode); /*translate locate=(x,y) -> need input to (y,x)*/
 int currentplayer = 1;
+int peekWhoistheenemy();
 void output_chart(char *strin);
 void whoisplayer();
 int data[lengthofmapping / 2] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
@@ -59,6 +81,17 @@ int asciitoint(int i);
 int if3dot(int changedpoint);
 int return4bit(int smallerthen99a, int smallerthen99b);
 int givealine(int index);
+int if3dotFORENEMY(int i);
+int leftchessplayer[2] = {9, 9};
+int wantcontinueputQ();
+void wantdonextplayerQ();
+void showhowmenychessdidyouleft();
+int Alltargetsthree();
+int partofmovegoon = 1; //if want stop the game do = 0
+void checkdie();
+int enemychessonbord();
+int chessonbord();
+int mymod2();
 
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
@@ -71,20 +104,23 @@ int main()
 
     /*try*/
     printf("%s", greating);
-    while (dataisfull() != 1)
+    output_chart(OUTPUT_CHAR);
+    while (wantcontinueputQ()) //Previous state :: while (dataisfull() != 1) ;; now use 9 chess
     {
         whoisplayer();
+        showhowmenychessdidyouleft();
+        //part1_sat
         printf("%s", pleaseputyourchest);
         blankloop = 0;
         int putedplace = inmod(1);
-        int putinmod1 = put(putedplace);
+        int putinmod1 = put(putedplace, PUTSATsatcode);
 
         while (putinmod1 == -1)
         {
             printf("%s", inputlocateerror);
             printf("%s", pleaseputyourchest);
             putedplace = inmod(1);
-            putinmod1 = put(putedplace);
+            putinmod1 = put(putedplace, PUTSATsatcode);
             if (blankloop == 0)
             {
                 blankloop++;
@@ -94,11 +130,71 @@ int main()
             blankloop++;
         }
         output_chart(OUTPUT_CHAR);
-        printf("If 3 dot happends :%d \n", if3dot(returnlocate(putedplace) + 1));
-        nextplayer();
+        //part2_if need to do remove
+        if (if3dot(returnlocate(putedplace) + 1))
+        {
+
+            blankloop = 0;
+            printf("%s", yougot3inalinepleaserenoveenemychess);
+
+            int removetarget = inmod(3);
+            int removereturncode = put(removetarget, Alltargetshavebeengroupedbynumberthree);
+
+            while (removereturncode == -1)
+            {
+                printf("%s", inputlocateerror);
+                printf("%s", yougot3inalinepleaserenoveenemychess);
+                removetarget = inmod(3);
+                removereturncode = put(removetarget, Alltargetshavebeengroupedbynumberthree);
+                if (blankloop == 0)
+                {
+                    blankloop++;
+                    blankloop--;
+                }
+
+                blankloop++;
+            }
+            output_chart(OUTPUT_CHAR);
+        }
+        wantdonextplayerQ();
     }
     printf("%s", finishinputallplace);
 
+    while (partofmovegoon) //part of move
+    {
+        whoisplayer();
+        int in = mymod2();
+        output_chart(OUTPUT_CHAR);
+        //part2_if need to do remove
+        if (if3dot(returnlocate(in) + 1))
+        {
+
+            blankloop = 0;
+            printf("%s", yougot3inalinepleaserenoveenemychess);
+
+            int removetarget = inmod(3);
+            int removereturncode = put(removetarget, Alltargetshavebeengroupedbynumberthree);
+
+            while (removereturncode == -1)
+            {
+                printf("%s", inputlocateerror);
+                printf("%s", yougot3inalinepleaserenoveenemychess);
+                removetarget = inmod(3);
+                removereturncode = put(removetarget, Alltargetshavebeengroupedbynumberthree);
+                if (blankloop == 0)
+                {
+                    blankloop++;
+                    blankloop--;
+                }
+
+                blankloop++;
+            }
+            output_chart(OUTPUT_CHAR);
+        }
+        nextplayer();
+    }
+
+    printf("%s", TheprogramhasstoppedThankyouforusingthisprogram);
     return 0;
 }
 
@@ -107,7 +203,7 @@ int main()
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
 
-int put(int locate)
+int put(int locate, int satcode)
 {
     //printf("locate:%d\n",locate);
     int place = returnlocate(locate);
@@ -115,16 +211,61 @@ int put(int locate)
     {
         return -1;
     }
-    if (data[place] == 0)
+    /*up for all sat*/
+    switch (satcode)
     {
-        data[place] = currentplayer;
-    }
-    else
-    {
+    case PUTSATsatcode:
+        if (data[place] == 0)
+        {
+            data[place] = currentplayer;
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
+        break;
+    case RMSATsatcode:
+
+        //printf("RMSATsatcode:");
+        if ((data[place] == peekWhoistheenemy()) && (if3dotFORENEMY(data[place]) != 1))
+        {
+            data[place] = CODEOFNOCHESSsatcode;
+            printf("%s", youhavedeletedachessofenemy);
+            return 0;
+        }
+        else
+        {
+            return -1;
+        }
+        break;
+    case Alltargetshavebeengroupedbynumberthree:
+        //printf("Alltargetshavebeengroupedbynumberthree:%d\n", Alltargetsthree());
+        if (Alltargetsthree())
+        {
+            if (data[place] == peekWhoistheenemy())
+            {
+                data[place] = CODEOFNOCHESSsatcode;
+                printf("%s", youhavedeletedachessofenemy);
+                return 0;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        else
+        {
+            return put(locate, RMSATsatcode);
+        }
+        break;
+    default:
+        printf("%s", ifreturnthiserrorisbignono);
         return -1;
+        break;
     }
 
-    return 0;
+    return -1;
 }
 
 void output_chart(char *strin)
@@ -156,6 +297,7 @@ void output_chart(char *strin)
         printf("\n");
     }
 }
+
 int inmod(int mymod)
 {
     int returnint = 0;
@@ -277,6 +419,7 @@ int inmod(int mymod)
 
     return returnint;
 }
+
 int returnlocate(int yx)
 {
     int y = yx / 10;
@@ -298,6 +441,7 @@ int returnlocate(int yx)
     }
     return -1;
 }
+
 int givethecofprint()
 {
     if (thisisforprintindex == (lengthofmapping / 2))
@@ -307,6 +451,7 @@ int givethecofprint()
     thisisforprintindex++;
     return data[thisisforprintindex - 1];
 }
+
 int dataisfull()
 {
     int i;
@@ -324,6 +469,7 @@ int dataisfull()
     }
     return all;
 }
+
 void whoisplayer()
 {
     int nousefordefault = 0;
@@ -344,6 +490,7 @@ void whoisplayer()
     }
     printf("\n");
 }
+
 int power(int tar, int i)
 {
     int buf = tar;
@@ -581,4 +728,209 @@ int givealine(int index)
 
     //printf("giveline:a:%d,b:%d\n",matha,mathb);
     return return4bit(matha, mathb);
+}
+
+int peekWhoistheenemy()
+{
+    int rt = (currentplayer == 1) ? 2 : 1;
+    return rt;
+}
+
+int if3dotFORENEMY(int i)
+{
+    nextplayer();
+    int rt = if3dot(i);
+    nextplayer();
+    return rt;
+}
+
+int wantcontinueputQ()
+{
+    if ((leftchessplayer[0] == 0) && (leftchessplayer[1] == 0))
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
+void wantdonextplayerQ()
+{
+    leftchessplayer[currentplayer - 1]--;
+    if (leftchessplayer[currentplayer - 1] == 0)
+    {
+        printf("%s", youhadfinishyourinput);
+    }
+    nextplayer();
+    if (leftchessplayer[currentplayer - 1] == 0)
+    {
+        nextplayer();
+    }
+}
+
+void showhowmenychessdidyouleft()
+{
+    printf("%s", DEFchessleft);
+    printf("%d\n", leftchessplayer[currentplayer - 1]);
+}
+
+int Alltargetsthree() //-OK-
+{
+    //for all data
+    //find enemey
+    //if 3 dot
+    //if all "YES" 3 dot => RT = 1 (: 0)
+
+    int f;
+    int RT = 1;
+    for (f = 0; f < lengthofmapping / 2; f++)
+    {
+        if (data[f] == peekWhoistheenemy())
+        {
+            int tmp = ((if3dotFORENEMY(data[f])) == 1) ? 1 : 0;
+            RT *= tmp;
+        }
+    }
+    return (RT);
+}
+
+int chessonbord()
+{
+
+    int f;
+    int RT = 0;
+    for (f = 0; f < lengthofmapping / 2; f++)
+    {
+        if (data[f] == currentplayer)
+        {
+            RT++;
+        }
+    }
+    return (RT);
+}
+
+int enemychessonbord()
+{
+    int RT;
+    nextplayer();
+    RT = chessonbord();
+    nextplayer();
+    return (RT);
+}
+
+void checkdie()
+{
+    if (enemychessonbord() == 2)
+    {
+        partofmovegoon = 0;
+        int nousefordefault = 0;
+        printf("%s", DEFyouwin);
+        switch (currentplayer)
+        {
+        case 1:
+            printf("%s", player1);
+            break;
+        case 2:
+            printf("%s", player2);
+            break;
+
+        default:
+            nousefordefault++;
+            nousefordefault--;
+            break;
+        }
+        printf("\n");
+    }
+}
+
+int mymod2()
+{
+    int y;
+    int go = 1;
+    int count = 0;
+    while (go)
+    {
+        if (count != 0)
+        {
+            printf("%s", errordoagain);
+        }
+        printf("%s", pleasemoveachess);
+        int in = inmod(2);
+        if (in != -1)
+        {
+            int output;
+            int a;
+            int c;
+            int b;
+            int d;
+            a = in % 10;
+            b = (in % 100) / 10;
+            c = (in % 1000) / 100;
+            d = in / 1000;
+            output = a * 1000 + b * 100 + c * 10 + d;
+            //alert
+            if ((a > 9) || (a < 0) || (b > 9) || (b < 0) || (c > 9) || (c < 0) || (d > 9) || (d < 0) || (output > 9999))
+            {
+                printf("ERROR,ERROR,ERROR;mathERROR!\n");
+            }
+            int x;
+
+            x = b * 10 + a;
+            y = d * 10 + c;
+            if ((returnlocate(x) != -1 && returnlocate(y) != -1) && ((data[returnlocate(x)] == currentplayer) && (data[returnlocate(y)] == CODEOFNOCHESSsatcode)))
+            {
+                //printf("pas1\n");
+                if (chessonbord() == youcanmoveyourownchesspieces)
+                {
+                    data[returnlocate(y)] = currentplayer;
+                    data[returnlocate(x)] = CODEOFNOCHESSsatcode;
+
+                    go = 0;
+                }
+                else
+                {
+                    //~
+                    int q = returnlocate(y);
+                    int w = returnlocate(x);
+                    int e;
+                    int r;
+                    int gotcha = 0;
+                    int i;
+                    for (i = 0; i < ((int)sizeof(linemapping) - 1); i++)
+                    {
+                        int whatiwant = (((int)linemapping[i] == (int)'|') || ((int)linemapping[i] == (int)'-')) ? 1 : 0;
+                        if (whatiwant)
+                        {
+                            //printf("pas1\n");
+                            int givealine4bit = givealine(i);
+                            int parenum1 = (givealine4bit / 100) - 1;
+                            int parenum2 = (givealine4bit % 100) - 1;
+                            e = parenum1;
+                            r = parenum2;
+                            if (((q == e) && (w == r)) || ((q == r) && (w == e)))
+                            {
+                                gotcha = 1;
+                            }
+                            else
+                            {
+                                gotcha = gotcha;
+                            }
+                        }
+                    }
+                    //~
+                    if (gotcha)
+                    {
+                        data[returnlocate(y)] = currentplayer;
+                        data[returnlocate(x)] = CODEOFNOCHESSsatcode;
+
+                        go = 0;
+                    }
+                }
+            }
+        }
+        count++;
+    }
+    return y;
 }
